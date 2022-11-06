@@ -1,0 +1,31 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+option java_package = "com.Heating";
+
+service HeatingService{
+	rpc ShowStatus(HeaterStatusRequest) returns (HeaterInfoResponse) {};
+	rpc SetTemp(HeaterToUpdateRequest) returns (HeaterInfoResponse) {};
+	rpc TurnOff(HeaterToUpdateRequest) returns (HeaterInfoResponse) {};
+}
+
+message Heater {
+	int32 device_id = 1;
+	string location = 2;
+	string status = 3;
+	int32 temperature = 4;
+
+}
+
+message HeaterStatusRequest{
+	int32 device_id = 1;
+}
+
+message HeaterToUpdateRequest{
+ 	int32 device_id = 1;
+ 	int32 temp = 2;
+}
+
+message HeaterInfoResponse{
+	Heater heater = 1;
+}
